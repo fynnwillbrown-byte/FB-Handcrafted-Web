@@ -1,0 +1,180 @@
+*{
+    box-sizing: border-box;
+    
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body {
+    background-color: #fbf9f6; /* Replace this with any color you like */
+}
+
+.navbar{
+    height: 70px;
+    width: 100%;
+    background-color: #1a1613;
+    align-items: center;
+    display: flex;
+    padding: 0 70px;
+}
+.h1{
+    color: white;
+    display: flex;
+}
+.h1:hover{
+    transition: transform 0.3s ease;
+}
+.navbar__menu{
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+}
+
+.navbar__menu li{
+    padding: 0 20px;
+}
+.navbar__menu li:hover{
+    transition: transform 0.3s ease;
+}
+.navbar__menu a{
+    text-decoration: none;
+    color: white; /* Soft warm ivory */
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+}
+.navbar__menu a:hover {
+    color: #dca067;
+     /* Changes to a nice cornflower blue on hover */
+}
+/* Gives the image container proper alignment next to the text */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+/* Styles the moose stamp to look like soft, clean cream woodcraft */
+.logo img {
+    /* 1. Turns off the harsh white inversion */
+    filter: none; 
+    
+    /* 2. Softens the dark parts of the logo to a matching charcoal */
+    background-color: #fffefe; 
+    
+    /* 3. Uses a clever filter matrix to shift the black lines into a gorgeous warm cream wood tone */
+    
+    
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Subtle animation that makes the badge lift slightly when hovered */
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Creates the main side-by-side layout box */
+.hero-section {
+    display: flex;
+    justify-content: space-between; /* Separates text to left and image to right */
+    align-items: center; /* Centers both items vertically against each other */
+    padding: 80px 70px; /* 80px space top/bottom, and 70px on sides to perfectly match your logo! */
+    width: 100%;
+}
+
+/* Controls the text container layout bounds */
+.Par {
+    flex: 1; /* Allows text section to scale fluidly */
+    max-width: 500px; /* Prevents long titles from over-stretching across the page */
+}
+
+/* Adjusts the large typography styling */
+.text_par {
+    font-family: Georgia, serif;
+    font-size: 3.8rem;
+    line-height: 1.15; /* Pulls the heading lines tighter together for a premium look */
+    color: #261f1a; /* Deep walnut tone instead of harsh pure black */
+    font-weight: 700;
+
+}
+
+/* Controls the cutting board container size */
+.backdrop__img {
+    flex: 1;
+    max-width: 650px; /* Keeps the cutting board file at a perfect visually balanced size */
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsively scales your specific raw png image asset */
+.backdrop__img img {
+    width: 100%;
+    height: auto;
+}
+
+/* Styles the Hero Button */
+.hero__btn {
+    display: inline-block; /* Allows us to add padding and margins properly */
+    margin-top: 30px; /* Pushes the button down slightly away from your text */
+    padding: 14px 35px; /* Creates the padding inside the button box */
+    background-color: #131313; /* Dark background to match your logo/text vibe */
+    color: #ffffff; /* White text color */
+    text-decoration: none; /* Removes the default text underline */
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px; /* Slightly softens the sharp corners */
+    transition: all 0.3s ease; /* Makes the color change smooth when hovered */
+    cursor: pointer;
+}
+
+/* Hover Effect: Button changes color when mouse moves over it */
+.hero__btn:hover {
+    background-color: #dca067;
+    transform: translateY(-2px); /* Makes the button subtly lift up when hovered */
+}
+.products__grid {
+    padding: 0 150px;
+    display: grid;
+    
+    /* 🔄 CHANGE THIS LINE TO FORCE 2 EQUAL COLUMNS */
+    grid-template-columns: repeat(2, 1fr); 
+    
+    gap: 30px; /* Keeps the uniform space between your product cards */
+}
+.products__title{
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    color: #261f1a;
+    
+    /* 🔄 UPDATE THIS LINE */
+    margin: 20px 0 40px 20px; /* Top: 20px (moves it down), Right: 0, Bottom: 40px, Left: 20px (moves it right) */
+}
+.paragraph{
+    font-size: 2rem;
+}
+
+/* Styles the overall About section container */
+#about-section {
+    padding: 60px 20px;
+    width: 100%;
+}
+
+/* Styles the biography paragraph text block */
+.paragraph {
+    max-width: 850px;         /* 1. Prevents the block from getting too wide */
+    margin: 40px auto 0 auto; /* 2. Centers the paragraph box horizontally on the page */
+    text-align: center;       /* 3. Centers the actual text lines inside the box */
+    
+    font-size: 2rem;        /* Makes your bio slightly larger and easier to read */
+    line-height: 1.6;         /* Adds comfortable vertical breathing room between your sentences */
+    color: #332a22;           /* A deep dark wood/charcoal tone to keep it looking premium */
+}
+/* Centers the About Me heading specifically on the about page */
+#about-section .products__title {
+    font-size: 4rem;
+    text-align: center;       /* Centers the heading text */
+    margin: 20px auto 40px auto; /* Keeps your 20px down space, centers it, and adds 40px space below it */
+}
+
+/* Container item that keeps everything aligned in the navbar */
