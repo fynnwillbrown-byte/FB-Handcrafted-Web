@@ -9,39 +9,50 @@
 <body>
     
     <div class="navbar">
-        <div class="logo">
-            <img src="img/fbhandcrafted logo.png" width="50px" height="50px">
+        <div class="navbar__brand">
+            <div class="logo">
+                <img src="img/fbhandcrafted logo.png" width="50px" height="50px" alt="FB Handcrafted Logo">
+            </div>
+            <div class="h1"><h1>FB Handcrafted</h1></div>
         </div>
-        <div class="h1"><h1>FB Handcrafted</h1></div>
         
-        <ul class="navbar__menu">
+        <!-- Toggle button visible only on mobile -->
+        <button class="navbar__toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+        
+        <ul class="navbar__menu" id="navbar-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About Me</a></li>
-            
         </ul>
     </div> 
-    </div>
 
     <!-- MAIN HERO CONTAINER -->
-        <div class="hero-section">
+    <div class="hero-section">
+        <!-- LEFT SIDE: Text content -->
+        <div class="Par">
+            <h1 class="text_par">Buy Beautiful<br>Handmade<br>Goods</h1>
+            <p>FB Handcrafted Handmade In Canada</p>
+            <a href="products.html" class="hero__btn">Explore Now &#x279C;</a>
+        </div>
         
-        <!-- LEFT SIDE: Your text aligned precisely to the left -->
-            <div class="Par">
-                <h1 class="text_par">Buy Beautiful<br>Handmade<br>Goods</h1>
-                <p>FB Handcrafted Handmade In Canada</p>
-                <a href="products.html" class="hero__btn">Explore Now &#x279C;</a>
-            </div>
-        
-        <!-- RIGHT SIDE: Your cutting board image container -->
-            <div class="backdrop__img">
-                <img src="img/Striped Walnut and Maple Cutting Board (1).png" alt="Handmade Cutting Board">
-            </div>
-        
+        <!-- RIGHT SIDE: Image container -->
+        <div class="backdrop__img">
+            <img src="img/Striped Walnut and Maple Cutting Board (1).png" alt="Handmade Cutting Board">
+        </div>
     </div>
+
     <div id="products-section">
-        <!-- You will put your product display code here later! -->
+        <!-- Future home page content -->
     </div>
-  
+    
+    <!-- Script to run the mobile menu drawer -->
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
