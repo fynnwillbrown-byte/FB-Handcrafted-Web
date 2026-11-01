@@ -44,6 +44,15 @@
     <div id="products-section">
         <!-- Future home page content -->
     </div>
+
+    <!-- VIEW COUNTER FOOTER -->
+    <footer class="site-footer">
+        <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
+        <div class="counter-display">
+            Total Views: <span id="view-count">...</span>
+        </div>
+    </footer>
+
     
     <!-- Script to run the mobile menu drawer -->
     <script>
@@ -54,5 +63,14 @@
             navbarMenu.classList.toggle('active');
         });
     </script>
+
+    <!-- Script to track and update total page views via Abacus API -->
+    <script>
+        function cb(response) {
+            document.getElementById('view-count').innerText = response.value;
+        }
+    </script>
+    <script async src="https://jasoncameron.dev"></script>
+   
 </body>
 </html>
