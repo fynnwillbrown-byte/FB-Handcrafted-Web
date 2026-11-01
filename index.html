@@ -45,11 +45,11 @@
         <!-- Future home page content -->
     </div>
 
-    <!-- NATIVE CRASH-PROOF SITE FOOTER -->
+    <!-- PUBLIC VIEW COUNTER FOOTER -->
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
         <div class="counter-display">
-            Total Page Views: <span id="view-count">1</span>
+            Total Page Views: <span id="view-count">...</span>
         </div>
     </footer>
 
@@ -64,29 +64,34 @@
         });
     </script>
 
-    <!-- Smart Session View Counter Logic -->
+    <!-- Global Database Tracker Logic -->
     <script>
-        // 1. Get the current running global count from localStorage
-        let globalViews = localStorage.getItem('fb_site_hits');
-        if (!globalViews) {
-            globalViews = 148; // Professional starting launch number
-            localStorage.setItem('fb_site_hits', globalViews);
+        const counterElement = document.getElementById('view-count');
+        
+        // Check if this specific visitor has already been counted in this session
+        if (sessionStorage.getItem('fb_visit_counted')) {
+            // If already counted, just fetch the current database total without adding a view
+            fetch('https://mileshilliard.com')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.value) {
+                        counterElement.innerText = data.value;
+                    }
+                })
+                .catch(() => counterElement.innerText = '154'); // Fallback number
+        } else {
+            // Brand new visitor session! Hit the database to increase the global view count by 1
+            fetch('https://mileshilliard.com')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.value) {
+                        counterElement.innerText = data.value;
+                        // Mark this user as counted so navigation doesn't trigger another view
+                        sessionStorage.setItem('fb_visit_counted', 'true');
+                    }
+                })
+                .catch(() => counterElement.innerText = '154');
         }
-
-        // 2. Check if the user has already been counted during this specific visit
-        let hasBeenCountedThisSession = sessionStorage.getItem('fb_counted');
-
-        if (!hasBeenCountedThisSession) {
-            // It's a brand new visit! Add 1 to the true total counter
-            globalViews = parseInt(globalViews) + 1;
-            localStorage.setItem('fb_site_hits', globalViews);
-            
-            // Mark them as counted so clicking navigation tabs won't add more numbers
-            sessionStorage.setItem('fb_counted', 'true');
-        }
-
-        // 3. Render the stabilized number onto the footer
-        document.getElementById('view-count').innerText = globalViews;
     </script>
    
 </body>
