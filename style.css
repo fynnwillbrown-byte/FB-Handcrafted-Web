@@ -22,13 +22,13 @@ img {
 }
 
 /* ==========================================================================
-   2. NAVIGATION BAR
+   2. STICKY NAVIGATION BAR (ALIGNED FOR ALL THREE PAGES)
    ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #141310; /* Dark brown/black header bar */
+    background-color: #141310; /* Dark timber theme background */
     padding: 15px 5%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -41,10 +41,10 @@ img {
     gap: 15px;
 }
 
-/* Targets your text wrapper inside the <div class="h1"> precisely */
+/* Fixes the black text contrast error by targeting your brand title block wrapper */
 .navbar__brand .h1 h1 {
     font-size: 1.5rem;
-    color: #ffffff; /* White text for clear contrast against the dark background */
+    color: #ffffff !important; /* Forces text to remain bright white on the dark theme */
     font-weight: 700;
     letter-spacing: -0.5px;
 }
@@ -57,17 +57,17 @@ img {
 
 .navbar__menu a {
     text-decoration: none;
-    color: #aaaaaa; /* Light gray links */
+    color: #aaaaaa; /* Clean gray navigation options */
     font-weight: 500;
     font-size: 1rem;
     transition: color 0.3s ease;
 }
 
 .navbar__menu a:hover {
-    color: #e4a853; /* Warm wood gold accent on hover */
+    color: #e4a853; /* Golden highlighting theme link accent */
 }
 
-/* Mobile Toggle Menu Button */
+/* Mobile responsive navigation trigger */
 .navbar__toggle {
     display: none;
     background: none;
@@ -78,7 +78,7 @@ img {
 }
 
 /* ==========================================================================
-   3. INDEX HERO SECTION (HOME PAGE)
+   3. INDEX HERO SPLIT PANEL (HOME PAGE ONLY)
    ========================================================================== */
 .hero-section {
     display: flex;
@@ -144,7 +144,7 @@ img {
 }
 
 /* ==========================================================================
-   4. PRODUCTS GRID MODULE (PRODUCTS PAGE)
+   4. PRODUCTS COLLECTION MATRIX (PRODUCTS.HTML)
    ========================================================================== */
 #products-section {
     max-width: 1200px;
@@ -207,7 +207,7 @@ img {
 
 .product__price {
     font-size: 1.1rem;
-    color: #e4a853; /* Pricing color */
+    color: #e4a853; 
     font-weight: bold;
     margin-bottom: 4px;
 }
@@ -219,20 +219,8 @@ img {
     text-transform: uppercase;
 }
 
-/* Bottom Email Callout Bar */
-.paragraph {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 25px;
-    background-color: #f7f5f2; /* Light warm wood tint */
-    border-left: 4px solid #2d1906;
-    border-radius: 0 8px 8px 0;
-    text-align: center;
-    font-size: 1.05rem;
-}
-
 /* ==========================================================================
-   5. ABOUT ME SECTION (ABOUT PAGE)
+   5. PROFILE LAYOUT WRAPPER (ABOUT.HTML)
    ========================================================================== */
 #about-section {
     max-width: 900px;
@@ -248,22 +236,31 @@ img {
     border: 1px solid #eee;
 }
 
-/* Cleans up spacing for the paragraph specifically inside the about block */
-.about__container .paragraph {
-    margin: 0 auto 30px auto;
-    background-color: transparent;
-    border-left: none;
-    padding: 0;
+.about__contact {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Base presentation rules for standard block info texts */
+.paragraph {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
     text-align: left;
+    font-size: 1.05rem;
     line-height: 1.8;
 }
 
-.about__contact {
+/* Keeps your email description section formatted perfectly on the product catalog */
+#products-section + .paragraph {
+    background-color: #f7f5f2; /* Soft layout accent coloring */
+    border-left: 4px solid #2d1906;
+    border-radius: 0 8px 8px 0;
     text-align: center;
 }
 
 /* ==========================================================================
-   6. RESPONSIVE MEDIA QUERIES (MOBILE FIXES)
+   6. RESPONSIVE LAYOUT FIXES (MOBILE PHONES)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar__toggle {
@@ -304,7 +301,7 @@ img {
         max-height: 300px;
         margin-bottom: 20px;
     }
-    
+
     .about__container {
         padding: 20px;
     }
