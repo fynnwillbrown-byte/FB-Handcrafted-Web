@@ -64,19 +64,25 @@
     <!-- Script to run the mobile menu toggle and the page view counter -->
     <script>
         // --- PAGE VIEW COUNTER LOGIC ---
-        // Check if a view count already exists in local storage
+        // Get the persistent total count from localStorage
         let count = localStorage.getItem('page_view_count');
-        
-        if (count) {
+        if (!count) {
+            count = 0;
+        }
+
+        // Check if this specific tab/session has already registered a view
+        let hasCountedThisSession = sessionStorage.getItem('view_registered');
+
+        if (!hasCountedThisSession) {
+            // It's a brand new visit! Increment the overall count
             count = parseInt(count) + 1;
-        } else {
-            count = 1;
+            localStorage.setItem('page_view_count', count);
+            
+            // Mark this tab session as "already counted" so changing pages won't add more views
+            sessionStorage.setItem('view_registered', 'true');
         }
         
-        // Save the updated count back to local storage
-        localStorage.setItem('page_view_count', count);
-        
-        // Display the count in the HTML element
+        // Display the current total count in the HTML element
         document.getElementById('view-count').textContent = count;
 
         // PASSWORD LOGIC TO UNLOCK VIEW COUNT
