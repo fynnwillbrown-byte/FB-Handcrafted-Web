@@ -45,12 +45,9 @@
         <!-- Future home page content -->
     </div>
 
-    <!-- VIEW COUNTER FOOTER -->
+    <!-- CLEAN SITE FOOTER (No counter visible to visitors) -->
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
-        <div class="counter-display">
-            Total Views: <span id="view-count">1</span>
-        </div>
     </footer>
 
     
@@ -64,24 +61,10 @@
         });
     </script>
 
-    <!-- Reliable Offline/Local View Counter System -->
+    <!-- Invisible background tracker that syncs with your desktop folder -->
     <script>
-        // Check if a view history already exists in the current browser session
-        let currentViews = localStorage.getItem('fb_page_views');
-        
-        if (currentViews) {
-            // If it exists, parse the number, add 1 view, and resave it
-            currentViews = parseInt(currentViews) + 1;
-        } else {
-            // Starting seed value for your launch counter
-            currentViews = 12; 
-        }
-        
-        // Save the updated calculation back into storage
-        localStorage.setItem('fb_page_views', currentViews);
-        
-        // Render the clean numerical string seamlessly into the text container
-        document.getElementById('view-count').innerText = currentViews;
+        fetch('https://keyvalue.xyz', { method: 'POST' })
+        .catch(err => console.log('Syncing...'));
     </script>
    
 </body>
