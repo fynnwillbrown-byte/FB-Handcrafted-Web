@@ -22,7 +22,7 @@ img {
 }
 
 /* ==========================================================================
-   2. STICKY NAVIGATION BAR (ALIGNED FOR ALL THREE PAGES)
+   2. STICKY NAVIGATION BAR
    ========================================================================== */
 .navbar {
     display: flex;
@@ -41,10 +41,9 @@ img {
     gap: 15px;
 }
 
-/* Fixes the black text contrast error by targeting your brand title block wrapper */
 .navbar__brand .h1 h1 {
     font-size: 1.5rem;
-    color: #ffffff !important; /* Forces text to remain bright white on the dark theme */
+    color: #ffffff; /* Clear white contrast against dark navbar */
     font-weight: 700;
     letter-spacing: -0.5px;
 }
@@ -57,17 +56,16 @@ img {
 
 .navbar__menu a {
     text-decoration: none;
-    color: #aaaaaa; /* Clean gray navigation options */
+    color: #aaaaaa;
     font-weight: 500;
     font-size: 1rem;
     transition: color 0.3s ease;
 }
 
 .navbar__menu a:hover {
-    color: #e4a853; /* Golden highlighting theme link accent */
+    color: #e4a853; /* Warm gold anchor hover color */
 }
 
-/* Mobile responsive navigation trigger */
 .navbar__toggle {
     display: none;
     background: none;
@@ -144,7 +142,7 @@ img {
 }
 
 /* ==========================================================================
-   4. PRODUCTS COLLECTION MATRIX (PRODUCTS.HTML)
+   4. PRODUCTS COLLECTION MATRIX (PRODUCTS PAGE)
    ========================================================================== */
 #products-section {
     max-width: 1200px;
@@ -220,7 +218,7 @@ img {
 }
 
 /* ==========================================================================
-   5. PROFILE LAYOUT WRAPPER (ABOUT.HTML)
+   5. PROFILE LAYOUT WRAPPER (ABOUT PAGE)
    ========================================================================== */
 #about-section {
     max-width: 900px;
@@ -241,7 +239,6 @@ img {
     margin-top: 25px;
 }
 
-/* Base presentation rules for standard block info texts */
 .paragraph {
     max-width: 800px;
     margin: 40px auto;
@@ -251,16 +248,46 @@ img {
     line-height: 1.8;
 }
 
-/* Keeps your email description section formatted perfectly on the product catalog */
+/* Special formatting for the email section on the product page */
 #products-section + .paragraph {
-    background-color: #f7f5f2; /* Soft layout accent coloring */
+    background-color: #f7f5f2; 
     border-left: 4px solid #2d1906;
     border-radius: 0 8px 8px 0;
     text-align: center;
 }
 
 /* ==========================================================================
-   6. RESPONSIVE LAYOUT FIXES (MOBILE PHONES)
+   6. SITE FOOTER & PUBLIC VIEW COUNTER
+   ========================================================================== */
+.site-footer {
+    background-color: #141310; /* Dark background to match navbar */
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: 60px;
+    width: 100%;
+}
+
+.site-footer p {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: #e0e0e0;
+}
+
+.counter-display {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-display img {
+    height: 32px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE LAYOUT FIXES (MOBILE PHONES)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar__toggle {
