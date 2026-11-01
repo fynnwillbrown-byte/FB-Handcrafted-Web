@@ -1,419 +1,232 @@
-*{
-/* --- Global Reset & Base Styles --- */
+/* ==========================================================================
+   1. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
 * {
-box-sizing: border-box;
-    
-margin: 0;
-padding: 0;
-font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #fbf9f6; /* Replace this with any color you like */
-    background-color: #fbf9f6; 
-    overflow-x: hidden; /* Prevents pages from shifting sideways on mobile */
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px; 
-    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fcfcfc;
+    color: #333333;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 img {
-    max-width: 100%; 
-    height: auto;    
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
-.navbar{
-/* --- Navigation Layout --- */
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
 .navbar {
-height: 70px;
-width: 100%;
-background-color: #1a1613;
-align-items: center;
-display: flex;
-    padding: 0 70px;
-    padding: 0 5%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: relative;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .navbar__brand {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-}
-
-.logo img {
-    filter: none; 
-    background-color: #fffefe; 
-    transition: transform 0.3s ease;
-}
-.h1{
-
-.logo img:hover {
-    transform: scale(1.05);
-}
-
-.h1 {
-color: white;
-display: flex;
-}
-.h1:hover{
-
-.h1 h1 {
-    font-size: 1.5rem; 
-}
-
-.h1:hover {
-transition: transform 0.3s ease;
-}
-.navbar__menu{
-
-/* Mobile Toggle Menu Button - Invisible on Desktop */
-.navbar__toggle {
-    display: none;
-    font-size: 1.8rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
-    margin-left: auto; 
+.navbar__brand h1 {
+    font-size: 1.5rem;
+    color: #2c2c2c;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .navbar__menu {
-display: flex;
-list-style: none;
-margin-left: auto;
+    display: flex;
+    list-style: none;
+    gap: 30px;
 }
-
-.navbar__menu li{
-.navbar__menu li {
-padding: 0 20px;
-}
-.navbar__menu li:hover{
-
-.navbar__menu li:hover {
-transition: transform 0.3s ease;
-}
-.navbar__menu a{
 
 .navbar__menu a {
-text-decoration: none;
-    color: white; /* Soft warm ivory */
-    color: white; 
-font-size: 1.1rem;
-font-weight: bold;
-transition: color 0.3s ease;
-
+    text-decoration: none;
+    color: #555555;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
 }
 
 .navbar__menu a:hover {
-color: #dca067;
-     /* Changes to a nice cornflower blue on hover */
-}
-/* Gives the image container proper alignment next to the text */
-.logo {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
+    color: #e4a853; /* Warm handcrafted gold/amber accent */
 }
 
-/* Styles the moose stamp to look like soft, clean cream woodcraft */
-.logo img {
-    /* 1. Turns off the harsh white inversion */
-    filter: none; 
-    
-    /* 2. Softens the dark parts of the logo to a matching charcoal */
-    background-color: #fffefe; 
-    
-    /* 3. Uses a clever filter matrix to shift the black lines into a gorgeous warm cream wood tone */
-    
-    
-    transition: transform 0.3s ease;
-}
-
-/* Optional: Subtle animation that makes the badge lift slightly when hovered */
-.logo img:hover {
-    transform: scale(1.05);
-}
-
-/* Creates the main side-by-side layout box */
-/* --- Hero Section Layout --- */
-.hero-section {
-display: flex;
-    justify-content: space-between; /* Separates text to left and image to right */
-    align-items: center; /* Centers both items vertically against each other */
-    padding: 80px 70px; /* 80px space top/bottom, and 70px on sides to perfectly match your logo! */
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 80px 5%; 
-width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-}
-
-/* Controls the text container layout bounds */
-.Par {
-    flex: 1; /* Allows text section to scale fluidly */
-    max-width: 500px; /* Prevents long titles from over-stretching across the page */
-    flex: 1; 
-    max-width: 500px; 
-}
-
-/* Adjusts the large typography styling */
-.text_par {
-font-family: Georgia, serif;
-font-size: 3.8rem;
-    line-height: 1.15; /* Pulls the heading lines tighter together for a premium look */
-    color: #261f1a; /* Deep walnut tone instead of harsh pure black */
-    line-height: 1.15; 
-    color: #261f1a; 
-font-weight: 700;
-}
-
-.Par p {
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #55463c;
-}
-
-/* Controls the cutting board container size */
-.backdrop__img {
-flex: 1;
-    max-width: 650px; /* Keeps the cutting board file at a perfect visually balanced size */
-    max-width: 650px; 
-display: flex;
-justify-content: center;
-}
-
-/* Responsively scales your specific raw png image asset */
-.backdrop__img img {
-width: 100%;
-height: auto;
-}
-
-/* Styles the Hero Button */
-.hero__btn {
-    display: inline-block; /* Allows us to add padding and margins properly */
-    margin-top: 30px; /* Pushes the button down slightly away from your text */
-    padding: 14px 35px; /* Creates the padding inside the button box */
-    background-color: #131313; /* Dark background to match your logo/text vibe */
-    color: #ffffff; /* White text color */
-    text-decoration: none; /* Removes the default text underline */
-    display: inline-block; 
-    margin-top: 30px; 
-    padding: 14px 35px; 
-    background-color: #131313; 
-    color: #ffffff; 
-    text-decoration: none; 
-font-size: 1.1rem;
-font-weight: bold;
-    border-radius: 50px; /* Slightly softens the sharp corners */
-    transition: all 0.3s ease; /* Makes the color change smooth when hovered */
-    border-radius: 50px; 
-    transition: all 0.3s ease; 
-cursor: pointer;
-}
-
-/* Hover Effect: Button changes color when mouse moves over it */
-.hero__btn:hover {
-background-color: #dca067;
-    transform: translateY(-2px); /* Makes the button subtly lift up when hovered */
-    transform: translateY(-2px); 
-}
-
-/* --- Products Section Styles --- */
-#products-section {
-    padding: 40px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.products__title {
-    font-family: Georgia, serif;
-    font-size: 2.2rem;
-    color: #261f1a;
-    margin: 20px 0 40px 0; 
-}
-
-.products__grid {
-    padding: 0 150px;
-display: grid;
-    
-    /* 🔄 CHANGE THIS LINE TO FORCE 2 EQUAL COLUMNS */
-grid-template-columns: repeat(2, 1fr); 
-    
-    gap: 30px; /* Keeps the uniform space between your product cards */
-    gap: 30px; 
-}
-.products__title{
-    font-family: Georgia, serif;
-    font-size: 2.2rem;
-
-.product__card {
-    background: #fbfbfb;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-}
-
-.product__img-wrapper {
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    background-color: #f2ede6;
-}
-
-.product__img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-.product__card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-color: #261f1a;
-    
-    /* 🔄 UPDATE THIS LINE */
-    margin: 20px 0 40px 20px; /* Top: 20px (moves it down), Right: 0, Bottom: 40px, Left: 20px (moves it right) */
-}
-.paragraph{
-    font-size: 2rem;
-
-.product__price {
-    font-size: 1.15rem;
-    font-weight: bold;
-    color: #261f1a;
-    margin-bottom: 5px;
-}
-
-/* Styles the overall About section container */
-.product__card h4 {
-    font-size: 0.95rem;
-    color: #776555;
-    font-weight: normal;
-}
-
-/* --- About Section Styles --- */
-#about-section {
-    padding: 60px 20px;
-    padding: 60px 5%;
-width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-/* Styles the biography paragraph text block */
-.paragraph {
-    max-width: 850px;         /* 1. Prevents the block from getting too wide */
-    margin: 40px auto 0 auto; /* 2. Centers the paragraph box horizontally on the page */
-    text-align: center;       /* 3. Centers the actual text lines inside the box */
-    
-    font-size: 2rem;        /* Makes your bio slightly larger and easier to read */
-    line-height: 1.6;         /* Adds comfortable vertical breathing room between your sentences */
-    color: #332a22;           /* A deep dark wood/charcoal tone to keep it looking premium */
-}
-/* Centers the About Me heading specifically on the about page */
-#about-section .products__title {
-font-size: 4rem;
-    text-align: center;       /* Centers the heading text */
-    margin: 20px auto 40px auto; /* Keeps your 20px down space, centers it, and adds 40px space below it */
-    text-align: center;       
-    margin: 20px auto 40px auto; 
-}
-
-.paragraph {
-    max-width: 850px;         
-    margin: 40px auto 0 auto; 
-    text-align: center;       
-    font-size: 2rem;        
-    line-height: 1.6;         
-    color: #332a22;           
-}
-
-/* Container item that keeps everything aligned in the navbar */
-.about__container {
-    text-align: center;
-}
-
-.about__contact {
-    margin-top: 40px;
+/* Mobile Toggle Menu Button */
+.navbar__toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #2c2c2c;
+    cursor: pointer;
 }
 
 /* ==========================================================================
-   --- MOBILE STYLES (Phones & Screens under 768px wide) ---
+   3. HERO SECTION
    ========================================================================== */
-@media screen and (max-width: 768px) {
-    
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    min-height: calc(100vh - 80px);
+}
+
+.Par {
+    flex: 1;
+    max-width: 550px;
+}
+
+.text_par {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.Par p {
+    font-size: 1.2rem;
+    color: #666666;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+.hero__btn {
+    display: inline-block;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero__btn:hover {
+    background-color: #e4a853;
+    transform: translateY(-2px);
+}
+
+.backdrop__img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backdrop__img img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
+}
+
+/* Placeholder space for future product blocks */
+#products-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 5%;
+}
+
+/* ==========================================================================
+   4. SITE FOOTER & DIGITAL VIEW COUNTER
+   ========================================================================== */
+.site-footer {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: 60px;
+    width: 100%;
+}
+
+.site-footer p {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: #e0e0e0;
+}
+
+.counter-display {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #cccccc;
+    letter-spacing: 0.5px;
+}
+
+#view-count {
+    font-weight: bold;
+    font-family: monospace, sans-serif;
+    color: #e4a853; /* Golden Handcrafted Accent Digits */
+    background-color: #1a1a1a;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-left: 6px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   5. RESPONSIVE MEDIA QUERIES (MOBILE DEVICES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Navbar Mobile Layout */
     .navbar__toggle {
         display: block;
     }
 
     .navbar__menu {
-        display: none; 
+        display: none;
         flex-direction: column;
-        position: absolute;
-        top: 70px; 
-        left: 0;
         width: 100%;
-        background-color: #1a1613;
-        padding: 20px 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        gap: 15px;
         text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
+    /* JavaScript toggles this class when the button is clicked */
     .navbar__menu.active {
         display: flex;
     }
 
-    .navbar__menu li {
-        padding: 15px 0; 
-        width: 100%;
-    }
-
+    /* Hero Section Mobile Layout stacked vertically */
     .hero-section {
-        flex-direction: column-reverse; 
+        flex-direction: column-reverse;
         text-align: center;
-        padding: 40px 20px;
-        gap: 30px;
+        padding: 40px 5%;
+        justify-content: center;
+        min-height: auto;
     }
 
     .text_par {
-        font-size: 2.4rem; 
+        font-size: 2.4rem;
     }
 
-    .backdrop__img {
-        max-width: 100%;
-    }
-
-    .products__grid {
-        grid-template-columns: 1fr;
-        padding: 0 10px;
-    }
-
-    .product__img-wrapper {
-        height: 220px; 
-    }
-
-    #about-section .products__title {
-        font-size: 2.8rem;
-    }
-
-    .paragraph {
-        font-size: 1.25rem;
-        line-height: 1.5;
+    .backdrop__img img {
+        max-height: 300px;
+        margin-bottom: 20px;
     }
 }
