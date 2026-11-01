@@ -48,5 +48,34 @@
             navbarMenu.classList.toggle('active');
         });
     </script>
+        <!-- Script to run the mobile menu toggle and READ-ONLY counter -->
+    <script>
+        // --- PAGE VIEW COUNTER LOGIC (READ ONLY FOR SUB-PAGES) ---
+        // Just pull the number; do not add anything to it!
+        let count = localStorage.getItem('page_view_count') || 0;
+        document.getElementById('view-count').textContent = count;
+
+        // PASSWORD LOGIC TO UNLOCK VIEW COUNT
+        function checkPassword() {
+            const passwordInput = document.getElementById('secret-key').value;
+            if (passwordInput === 'Fynn') {
+                document.getElementById('counter-wrapper').style.display = 'inline';
+                document.getElementById('unlock-container').style.display = 'none';
+            } else {
+                alert('Incorrect password.');
+            }
+        }
+
+        // --- MOBILE MENU TOGGLE LOGIC ---
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        if (menuBtn && navbarMenu) {
+            menuBtn.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+            });
+        }
+    </script>
+
 </body>
 </html>
