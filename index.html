@@ -49,7 +49,8 @@
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
         <div class="counter-display">
-            Total Views: <span id="view-count">...</span>
+            <!-- Secure Image Tracker: Counts and shows views instantly without JavaScript -->
+            <img src="https://glitch.me" alt="Total Page Views">
         </div>
     </footer>
 
@@ -62,21 +63,6 @@
         menuBtn.addEventListener('click', () => {
             navbarMenu.classList.toggle('active');
         });
-    </script>
-
-    <!-- Corrected Script using Hylia API (CORS friendly) -->
-    <script>
-        fetch('https://hylia.dev')
-            .then(response => response.json())
-            .then(data => {
-                if (data && typeof data.value !== 'undefined') {
-                    document.getElementById('view-count').innerText = data.value;
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching page views:', error);
-                document.getElementById('view-count').innerText = '1';
-            });
     </script>
    
 </body>
