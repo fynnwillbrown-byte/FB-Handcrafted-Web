@@ -28,7 +28,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #141310;
+    background-color: #141310; /* Dark brown/black header bar */
     padding: 15px 5%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -41,9 +41,10 @@ img {
     gap: 15px;
 }
 
-.navbar__brand h1 {
+/* Targets your text wrapper inside the <div class="h1"> precisely */
+.navbar__brand .h1 h1 {
     font-size: 1.5rem;
-    color: #ffffff;
+    color: #ffffff; /* White text for clear contrast against the dark background */
     font-weight: 700;
     letter-spacing: -0.5px;
 }
@@ -56,16 +57,17 @@ img {
 
 .navbar__menu a {
     text-decoration: none;
-    color: #aaaaaa;
+    color: #aaaaaa; /* Light gray links */
     font-weight: 500;
     font-size: 1rem;
     transition: color 0.3s ease;
 }
 
 .navbar__menu a:hover {
-    color: #e4a853;
+    color: #e4a853; /* Warm wood gold accent on hover */
 }
 
+/* Mobile Toggle Menu Button */
 .navbar__toggle {
     display: none;
     background: none;
@@ -76,7 +78,7 @@ img {
 }
 
 /* ==========================================================================
-   3. HERO SECTION
+   3. INDEX HERO SECTION (HOME PAGE)
    ========================================================================== */
 .hero-section {
     display: flex;
@@ -123,6 +125,7 @@ img {
 
 .hero__btn:hover {
     background-color: #e4a853;
+    color: #141310;
     transform: translateY(-2px);
 }
 
@@ -140,14 +143,127 @@ img {
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
 }
 
+/* ==========================================================================
+   4. PRODUCTS GRID MODULE (PRODUCTS PAGE)
+   ========================================================================== */
 #products-section {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 5%;
 }
 
+.products__title {
+    font-size: 2.2rem;
+    color: #2c2c2c;
+    margin-bottom: 30px;
+    font-weight: 700;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+}
+
+.products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.product__card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product__card:hover {
+    transform: translateY(-5px);
+}
+
+.product__img-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: #f5f5f5;
+}
+
+.product__img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product__card h3 {
+    font-size: 1.15rem;
+    color: #2c2c2c;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.product__price {
+    font-size: 1.1rem;
+    color: #e4a853; /* Pricing color */
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.product__card h4 {
+    font-size: 0.85rem;
+    color: #888888;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Bottom Email Callout Bar */
+.paragraph {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #f7f5f2; /* Light warm wood tint */
+    border-left: 4px solid #2d1906;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+    font-size: 1.05rem;
+}
+
 /* ==========================================================================
-   4. RESPONSIVE MEDIA QUERIES (MOBILE DEVICES)
+   5. ABOUT ME SECTION (ABOUT PAGE)
+   ========================================================================== */
+#about-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 5%;
+}
+
+.about__container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid #eee;
+}
+
+/* Cleans up spacing for the paragraph specifically inside the about block */
+.about__container .paragraph {
+    margin: 0 auto 30px auto;
+    background-color: transparent;
+    border-left: none;
+    padding: 0;
+    text-align: left;
+    line-height: 1.8;
+}
+
+.about__contact {
+    text-align: center;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE MEDIA QUERIES (MOBILE FIXES)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar__toggle {
@@ -187,5 +303,9 @@ img {
     .backdrop__img img {
         max-height: 300px;
         margin-bottom: 20px;
+    }
+    
+    .about__container {
+        padding: 20px;
     }
 }
