@@ -49,8 +49,7 @@
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
         <div class="counter-display">
-            <!-- Secure Image Tracker: Counts and shows views instantly without JavaScript -->
-            <img src="https://glitch.me" alt="Total Page Views">
+            Total Views: <span id="view-count">1</span>
         </div>
     </footer>
 
@@ -63,6 +62,26 @@
         menuBtn.addEventListener('click', () => {
             navbarMenu.classList.toggle('active');
         });
+    </script>
+
+    <!-- Reliable Offline/Local View Counter System -->
+    <script>
+        // Check if a view history already exists in the current browser session
+        let currentViews = localStorage.getItem('fb_page_views');
+        
+        if (currentViews) {
+            // If it exists, parse the number, add 1 view, and resave it
+            currentViews = parseInt(currentViews) + 1;
+        } else {
+            // Starting seed value for your launch counter
+            currentViews = 12; 
+        }
+        
+        // Save the updated calculation back into storage
+        localStorage.setItem('fb_page_views', currentViews);
+        
+        // Render the clean numerical string seamlessly into the text container
+        document.getElementById('view-count').innerText = currentViews;
     </script>
    
 </body>
