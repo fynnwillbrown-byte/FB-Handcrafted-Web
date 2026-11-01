@@ -64,13 +64,20 @@
         });
     </script>
 
-    <!-- Script to track and update total page views via Abacus API -->
+    <!-- Corrected Script using fetch() to load views dynamically -->
     <script>
-        function cb(response) {
-            document.getElementById('view-count').innerText = response.value;
-        }
+        fetch('https://jasoncameron.dev')
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.value) {
+                    document.getElementById('view-count').innerText = data.value;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching page views:', error);
+                document.getElementById('view-count').innerText = '1';
+            });
     </script>
-    <script async src="https://jasoncameron.dev"></script>
    
 </body>
 </html>
