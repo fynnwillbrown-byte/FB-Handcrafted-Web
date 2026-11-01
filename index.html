@@ -64,33 +64,34 @@
         });
     </script>
 
-    <!-- Global Database Tracker Logic -->
+    <!-- Corrected Global Database Tracker Logic -->
     <script>
         const counterElement = document.getElementById('view-count');
+        const baseUrl = 'https://countapi.mileshilliard.com/api/v1';
         
         // Check if this specific visitor has already been counted in this session
         if (sessionStorage.getItem('fb_visit_counted')) {
-            // If already counted, just fetch the current database total without adding a view
-            fetch('https://mileshilliard.com')
+            // Fetch the current total views from the database without increasing the score
+            fetch(`${baseUrl}/get/fbhandcrafted2026_main`)
                 .then(res => res.json())
                 .then(data => {
-                    if (data && data.value) {
+                    if (data && typeof data.value !== 'undefined') {
                         counterElement.innerText = data.value;
                     }
                 })
-                .catch(() => counterElement.innerText = '154'); // Fallback number
+                .catch(() => counterElement.innerText = '162'); 
         } else {
-            // Brand new visitor session! Hit the database to increase the global view count by 1
-            fetch('https://mileshilliard.com')
+            // Brand new visitor session! Hit the server to increase the global view count by 1
+            fetch(`${baseUrl}/hit/fbhandcrafted2026_main`)
                 .then(res => res.json())
                 .then(data => {
-                    if (data && data.value) {
+                    if (data && typeof data.value !== 'undefined') {
                         counterElement.innerText = data.value;
-                        // Mark this user as counted so navigation doesn't trigger another view
+                        // Mark this user as counted so moving between tabs won't add more numbers
                         sessionStorage.setItem('fb_visit_counted', 'true');
                     }
                 })
-                .catch(() => counterElement.innerText = '154');
+                .catch(() => counterElement.innerText = '162');
         }
     </script>
    
