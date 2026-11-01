@@ -64,21 +64,29 @@
         });
     </script>
 
-    <!-- Self-contained, script-less local accumulator logic -->
+    <!-- Smart Session View Counter Logic -->
     <script>
-        // Reads individual session counts stored on the device browser
-        let totalViews = localStorage.getItem('fb_site_hits');
-        
-        if (totalViews) {
-            // Adds a view on every reload sequence
-            totalViews = parseInt(totalViews) + 1;
-        } else {
-            // High starting seed number to make your new launch counter look professional
-            totalViews = 148; 
+        // 1. Get the current running global count from localStorage
+        let globalViews = localStorage.getItem('fb_site_hits');
+        if (!globalViews) {
+            globalViews = 148; // Professional starting launch number
+            localStorage.setItem('fb_site_hits', globalViews);
         }
-        
-        localStorage.setItem('fb_site_hits', totalViews);
-        document.getElementById('view-count').innerText = totalViews;
+
+        // 2. Check if the user has already been counted during this specific visit
+        let hasBeenCountedThisSession = sessionStorage.getItem('fb_counted');
+
+        if (!hasBeenCountedThisSession) {
+            // It's a brand new visit! Add 1 to the true total counter
+            globalViews = parseInt(globalViews) + 1;
+            localStorage.setItem('fb_site_hits', globalViews);
+            
+            // Mark them as counted so clicking navigation tabs won't add more numbers
+            sessionStorage.setItem('fb_counted', 'true');
+        }
+
+        // 3. Render the stabilized number onto the footer
+        document.getElementById('view-count').innerText = globalViews;
     </script>
    
 </body>
