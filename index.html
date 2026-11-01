@@ -56,32 +56,10 @@
         });
     </script>
 
-    <!-- Secure Private Counter Block (Hidden by default) -->
-    <div id="private-admin-node" style="display: none; background: #141310; color: #e4a853; text-align: center; padding: 15px; font-family: monospace; font-size: 1.1rem; border-top: 1px solid #2d2a24;">
-        Admin Views: <span style="font-weight: bold; background: #000; padding: 2px 8px; border-radius: 4px; margin-left: 5px;" id="admin-view-digits">...</span>
-    </div>
-
-    <!-- Background logger that unlocks with a secret URL password -->
+    <!-- Invisible background tracker that logs visits to your private dashboard -->
     <script>
-        // Check if the URL has "?admin=true" or if your browser already knows you're the owner
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('admin') === 'true') {
-            localStorage.setItem('show_my_private_counter', 'true');
-        }
-
-        // Hit the server to increment public views silently
         fetch('https://counterapi.dev')
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.value) {
-                    // Show it ONLY if the browser password flag is set to true
-                    if (localStorage.getItem('show_my_private_counter') === 'true') {
-                        document.getElementById('private-admin-node').style.display = 'block';
-                        document.getElementById('admin-view-digits').innerText = data.value;
-                    }
-                }
-            })
-            .catch(err => console.log('Syncing...'));
+        .catch(err => console.log('Syncing...'));
     </script>
    
 </body>
