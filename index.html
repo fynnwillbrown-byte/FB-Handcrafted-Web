@@ -64,12 +64,12 @@
         });
     </script>
 
-    <!-- Corrected Script using fetch() to load views dynamically -->
+    <!-- Corrected Script using Hylia API (CORS friendly) -->
     <script>
-        fetch('https://jasoncameron.dev')
+        fetch('https://hylia.dev')
             .then(response => response.json())
             .then(data => {
-                if (data && data.value) {
+                if (data && typeof data.value !== 'undefined') {
                     document.getElementById('view-count').innerText = data.value;
                 }
             })
