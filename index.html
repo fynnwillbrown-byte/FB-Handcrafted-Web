@@ -53,47 +53,34 @@
         </div>
     </footer>
 
-    
-    <!-- Script to run the mobile menu drawer -->
+    <!-- Script to run the mobile menu toggle and the page view counter -->
     <script>
+        // --- PAGE VIEW COUNTER LOGIC ---
+        // Check if a view count already exists in local storage
+        let count = localStorage.getItem('page_view_count');
+        
+        if (count) {
+            count = parseInt(count) + 1;
+        } else {
+            count = 1;
+        }
+        
+        // Save the updated count back to local storage
+        localStorage.setItem('page_view_count', count);
+        
+        // Display the count in the HTML element
+        document.getElementById('view-count').textContent = count;
+
+
+        // --- MOBILE MENU TOGGLE LOGIC ---
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navbarMenu = document.getElementById('navbar-menu');
 
-        menuBtn.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-    </script>
-
-    <!-- Corrected Global Database Tracker Logic -->
-    <script>
-        const counterElement = document.getElementById('view-count');
-        const baseUrl = 'https://countapi.mileshilliard.com/api/v1';
-        
-        // Check if this specific visitor has already been counted in this session
-        if (sessionStorage.getItem('fb_visit_counted')) {
-            // Fetch the current total views from the database without increasing the score
-            fetch(`${baseUrl}/get/fbhandcrafted2026_main`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && typeof data.value !== 'undefined') {
-                        counterElement.innerText = data.value;
-                    }
-                })
-                .catch(() => counterElement.innerText = '162'); 
-        } else {
-            // Brand new visitor session! Hit the server to increase the global view count by 1
-            fetch(`${baseUrl}/hit/fbhandcrafted2026_main`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && typeof data.value !== 'undefined') {
-                        counterElement.innerText = data.value;
-                        // Mark this user as counted so moving between tabs won't add more numbers
-                        sessionStorage.setItem('fb_visit_counted', 'true');
-                    }
-                })
-                .catch(() => counterElement.innerText = '162');
+        if (menuBtn && navbarMenu) {
+            menuBtn.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+            });
         }
     </script>
-   
 </body>
 </html>
