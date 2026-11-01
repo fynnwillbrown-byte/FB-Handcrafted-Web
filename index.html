@@ -13,7 +13,7 @@
             <div class="logo">
                 <img src="img/fbhandcrafted logo.png" width="50px" height="50px" alt="FB Handcrafted Logo">
             </div>
-            <h1>FB Handcrafted</h1>
+            <div class="h1"><h1>FB Handcrafted</h1></div>
         </div>
         
         <!-- Toggle button visible only on mobile -->
@@ -56,10 +56,25 @@
         });
     </script>
 
-    <!-- Invisible background tracker that syncs with your desktop folder -->
+    <!-- Secure Private Counter Block (Hidden by default) -->
+    <div id="private-admin-node" style="display: none; background: #141310; color: #e4a853; text-align: center; padding: 15px; font-family: monospace; font-size: 1.1rem; border-top: 1px solid #2d2a24;">
+        Admin Views: <span style="font-weight: bold; background: #000; padding: 2px 8px; border-radius: 4px; margin-left: 5px;" id="admin-view-digits">...</span>
+    </div>
+
+    <!-- Background logger that only shows the results if you unlock it in your browser -->
     <script>
-        fetch('https://keyvalue.xyz', { method: 'POST' })
-        .catch(err => console.log('Syncing...'));
+        fetch('https://counterapi.dev')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.value) {
+                    // This checks if your browser has the secret access key activated
+                    if (localStorage.getItem('show_my_private_counter') === 'true') {
+                        document.getElementById('private-admin-node').style.display = 'block';
+                        document.getElementById('admin-view-digits').innerText = data.value;
+                    }
+                }
+            })
+            .catch(err => console.log('Syncing...'));
     </script>
    
 </body>
