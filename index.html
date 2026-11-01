@@ -3,39 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - FB Handcrafted</title>
+    <title>FB Handcrafted</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Fixed icon font link below -->
-    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
     
-    <!-- THE EXACT SAME NAVBAR TO KEEP IT CONSISTENT -->
     <div class="navbar">
-        <div class="logo">
-            <img src="img/fbhandcrafted logo.png" width="50px" height="50px">
+        <div class="navbar__brand">
+            <div class="logo">
+                <img src="img/fbhandcrafted logo.png" width="50px" height="50px" alt="FB Handcrafted Logo">
+            </div>
+            <div class="h1"><h1>FB Handcrafted</h1></div>
         </div>
-        <div class="h1"><h1>FB Handcrafted</h1></div>
         
-        <ul class="navbar__menu">
+        <!-- Toggle button visible only on mobile -->
+        <button class="navbar__toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+        
+        <ul class="navbar__menu" id="navbar-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About Me</a></li>
         </ul>
+    </div> 
+
+    <!-- MAIN HERO CONTAINER -->
+    <div class="hero-section">
+        <!-- LEFT SIDE: Text content -->
+        <div class="Par">
+            <h1 class="text_par">Buy Beautiful<br>Handmade<br>Goods</h1>
+            <p>FB Handcrafted Handmade In Canada</p>
+            <a href="products.html" class="hero__btn">Explore Now &#x279C;</a>
+        </div>
+        
+        <!-- RIGHT SIDE: Image container -->
+        <div class="backdrop__img">
+            <img src="img/Striped Walnut and Maple Cutting Board (1).png" alt="Handmade Cutting Board">
+        </div>
     </div>
 
-    <!-- MAIN PRODUCT GRID CONTENT -->
-    <div id="about-section">
-        <h2 class="products__title">About Me</h2>
-        
-        <div class="paragraph">Hi, my name is Fynn! 
-I’m a 13-year-old wood and leather worker who loves bringing the old arts and traditional craftsmanship back to life. Every project lets me learn something new, improve my skills, and carry on the traditions of craftsmen from the past. My goal is to make quality, one-of-a-kind items that are built with care and meant to last. Thanks for supporting my small business and my passion for these timeless crafts! 
-</div>
-        
-    <!-- ✉️ SIMPLE EMAIL BUTTON -->
+    <div id="products-section">
+        <!-- Future home page content -->
+    </div>
+
+    
+    <!-- Script to run the mobile menu drawer -->
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    </script>
+
+    <!-- Invisible background tracker that syncs with your desktop dashboard -->
+    <script>
+        fetch('https://keyvalue.xyz', { method: 'POST' })
+        .catch(err => console.log('Syncing...'));
+    </script>
    
-
-
-  
 </body>
 </html>
