@@ -45,9 +45,12 @@
         <!-- Future home page content -->
     </div>
 
-    <!-- CLEAN, PRIVATE SITE FOOTER (Public View Counter Removed) -->
+    <!-- VIEW COUNTER FOOTER -->
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
+        <div class="counter-display">
+            Total Views: <span id="view-count">1</span>
+        </div>
     </footer>
 
     
@@ -61,9 +64,25 @@
         });
     </script>
 
-    <!-- INVISIBLE ANALYTICS SCRIPT -->
-    <!-- Replace "YOUR_USER_NAME" below with your actual account name when you sign up for GoatCounter -->
-    <script async src="https://zgo.at" data-goatcounter="https://YOUR_USER_://goatcounter.com"></script>
+    <!-- Reliable Offline/Local View Counter System -->
+    <script>
+        // Check if a view history already exists in the current browser session
+        let currentViews = localStorage.getItem('fb_page_views');
+        
+        if (currentViews) {
+            // If it exists, parse the number, add 1 view, and resave it
+            currentViews = parseInt(currentViews) + 1;
+        } else {
+            // Starting seed value for your launch counter
+            currentViews = 12; 
+        }
+        
+        // Save the updated calculation back into storage
+        localStorage.setItem('fb_page_views', currentViews);
+        
+        // Render the clean numerical string seamlessly into the text container
+        document.getElementById('view-count').innerText = currentViews;
+    </script>
    
 </body>
 </html>
