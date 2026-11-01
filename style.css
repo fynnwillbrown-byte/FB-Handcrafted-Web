@@ -325,3 +325,31 @@ img {
         line-height: 1.5;
     }
 }
+
+/* Footer & Counter Styling */
+.site-footer {
+    background-color: #2c2c2c; /* Or a color that matches your navbar */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 10px;
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+}
+
+.counter-display {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #b3b3b3;
+}
+
+#view-count {
+    font-weight: bold;
+    color: #e4a853; /* A warm, handcrafted accent color for the digits */
+    background: #1a1a1a;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+
+
