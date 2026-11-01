@@ -49,7 +49,15 @@
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
         <div class="counter-display">
-            Total Page Views: <span id="view-count">...</span>
+            <!-- Hidden by default via inline style -->
+            <span id="counter-wrapper" style="display: none;">
+                Total Page Views: <span id="view-count">...</span>
+            </span>
+            <!-- Hidden text box and unlock button -->
+            <span id="unlock-container">
+                <input type="password" id="secret-key" placeholder="Enter password" style="padding: 2px 5px; font-size: 12px; margin-left: 5px;">
+                <button onclick="checkPassword()" style="padding: 2px 8px; font-size: 12px; cursor: pointer;">Unlock Views</button>
+            </span>
         </div>
     </footer>
 
@@ -70,6 +78,19 @@
         
         // Display the count in the HTML element
         document.getElementById('view-count').textContent = count;
+
+        // PASSWORD LOGIC TO UNLOCK VIEW COUNT
+        function checkPassword() {
+            const passwordInput = document.getElementById('secret-key').value;
+            
+            // Check if user typed Fynn
+            if (passwordInput === 'Fynn') {
+                document.getElementById('counter-wrapper').style.display = 'inline'; // Shows the view count
+                document.getElementById('unlock-container').style.display = 'none'; // Hides the login input
+            } else {
+                alert('Incorrect password.');
+            }
+        }
 
 
         // --- MOBILE MENU TOGGLE LOGIC ---
