@@ -22,6 +22,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="about.html">About Me</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
         </ul>
     </div>
 
@@ -76,21 +77,32 @@
         If you would like to purchase something, or have a custom project request, you can email me directly at 
         <a href="mailto:fynnwillbrown@email.com" style="color: #2d1906; font-weight: bold; text-decoration: none;">fynnwillbrown@email.com</a>!
     </p>
-    
-    <script>
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navbarMenu = document.getElementById('navbar-menu');
 
-        menuBtn.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-    </script>
-        <!-- Script to run the mobile menu toggle and READ-ONLY counter -->
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+        <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
+        <div class="counter-display">
+            <!-- Hidden by default via inline style -->
+            <span id="counter-wrapper" style="display: none;">
+                Total Page Views: <span id="view-count">...</span>
+            </span>
+            <!-- Hidden text box and unlock button -->
+            <span id="unlock-container">
+                <input type="password" id="secret-key" placeholder="Enter password" style="padding: 2px 5px; font-size: 12px; margin-left: 5px;">
+                <button onclick="checkPassword()" style="padding: 2px 8px; font-size: 12px; cursor: pointer;">Unlock Views</button>
+            </span>
+        </div>
+    </footer>
+    
+    <!-- Script to run the mobile menu toggle and READ-ONLY counter -->
     <script>
         // --- PAGE VIEW COUNTER LOGIC (READ ONLY FOR SUB-PAGES) ---
-        // Just pull the number; do not add anything to it!
         let count = localStorage.getItem('page_view_count') || 0;
-        document.getElementById('view-count').textContent = count;
+        
+        const viewCountElement = document.getElementById('view-count');
+        if (viewCountElement) {
+            viewCountElement.textContent = count;
+        }
 
         // PASSWORD LOGIC TO UNLOCK VIEW COUNT
         function checkPassword() {
@@ -113,6 +125,5 @@
             });
         }
     </script>
-
 </body>
 </html>
