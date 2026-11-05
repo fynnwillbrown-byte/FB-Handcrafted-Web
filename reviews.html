@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - FB Handcrafted</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Modern Layout Overrides */
+        .reviews-layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .reviews-intro-header {
+            max-width: 1200px;
+            margin: 40px auto 10px;
+            padding: 0 5%;
+        }
+
+        /* Clean Input Box Styling */
+        #review-form {
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 40px;
+        }
+
+        #review-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+            font-size: 0.95rem;
+        }
+
+        #review-form input[type="text"],
+        #review-form select,
+        #review-form textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #333;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        #review-form input[type="text"]:focus,
+        #review-form select:focus,
+        #review-form textarea:focus {
+            outline: none;
+            border-color: #e4a853;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(228, 168, 83, 0.15);
+        }
+
+        #review-form button[type="submit"] {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Clean Feed Output */
+        .reviews-feed h3 {
+            font-size: 1.6rem;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .reviews-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            #review-form {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- NAVIGATION BAR -->
+    <div class="navbar">
+        <div class="navbar__brand">
+            <div class="logo">
+                <img src="img/fbhandcrafted logo.png" width="50px" height="50px" alt="FB Handcrafted Logo">
+            </div>
+            <div class="h1"><h1>FB Handcrafted</h1></div>
+        </div>
+        
+        <button class="navbar__toggle" id="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+        
+        <ul class="navbar__menu" id="navbar-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN PAGE HEADER -->
+    <div class="reviews-intro-header">
+        <h2 class="products__title" style="border: none; margin-bottom: 0;">Customer Feedback</h2>
+        <p style="color: #777; font-size: 1.1rem; margin-top: 5px;">See what others are saying about FB Handcrafted custom pieces.</p>
+    </div>
+
+    <!-- TWO-COLUMN WORKSPACE GRID -->
+    <div class="reviews-layout-grid">
+        
+        <!-- LEFT COLUMN: Submit Card -->
+        <div>
+            <form id="review-form">
+                <h3 style="margin-bottom: 20px; color: #2c2c2c; font-size: 1.3rem;">Share Your Experience</h3>
+                
+                <div>
+                    <label for="reviewer-name">Your Name</label>
+                    <input type="text" id="reviewer-name" required placeholder="Enter your name">
+                </div>
+                
+                <div>
+                    <label for="reviewer-rating">Select Rating</label>
+                    <select id="reviewer-rating" required>
+                        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                        <option value="3">⭐⭐⭐ (3/5)</option>
+                        <option value="2">⭐⭐ (2/5)</option>
+                        <option value="1">⭐ (1/5)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="reviewer-comment">Your Review</label>
+                    <textarea id="reviewer-comment" rows="6" required placeholder="What do you think of your board's craftsmanship, timber, or grain detail?"></textarea>
+                </div>
+
+                <button type="submit" class="hero__btn">Post Public Review &#x279C;</button>
+            </form>
+        </div>
+
+        <!-- RIGHT COLUMN: Scrolling Feed Stream -->
+        <div class="reviews-feed">
+            <h3>Recent Submissions</h3>
+            <div id="reviews-list">
+                <!-- Submissions inject here instantly -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CLEAN STANDARD FOOTER (No views layout elements) -->
+    <footer class="site-footer">
+        <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT SYSTEM -->
+    <script>
+        // --- MOBILE MENU TOGGLE LOGIC ---
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        if (menuBtn && navbarMenu) {
+            menuBtn.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+            });
+        }
+
+        // --- REVIEWS STORAGE ENGINE ---
+        const form = document.getElementById('review-form');
+        const displayList = document.getElementById('reviews-list');
+
+        window.addEventListener('load', loadReviews);
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('reviewer-name').value;
+                const rating = document.getElementById('reviewer-rating').value;
+                const comment = document.getElementById('reviewer-comment').value;
+                const date = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                const reviewItem = { name, rating, comment, date };
+
+                let feed = localStorage.getItem('fb_reviews') ? JSON.parse(localStorage.getItem('fb_reviews')) : [];
+                feed.unshift(reviewItem);
+                localStorage.setItem('fb_reviews', JSON.stringify(feed));
+
+                form.reset();
+                loadReviews();
+            });
+        }
+
+        function loadReviews() {
+            if (!displayList) return;
+            displayList.innerHTML = '';
+            
+            let feed = localStorage.getItem('fb_reviews') ? JSON.parse(localStorage.getItem('fb_reviews')) : [];
+
+            if (feed.length === 0) {
+                displayList.innerHTML = '<p style="color: #888; font-style: italic; background: #fff; border: 1px dashed #ddd; padding: 30px; text-align: center; border-radius: 8px;">No reviews left yet. Be the first to add your feedback!</p>';
+                return;
+            }
+
+            feed.forEach(item => {
+                const stars = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
+                const card = document.createElement('div');
+                card.className = 'review-card-item'; 
+                
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <strong style="color: #2c2c2c; font-size: 1.1rem; font-weight: 700;">${cleanInput(item.name)}</strong>
+                        <span style="color: #999; font-size: 0.85rem;">${item.date}</span>
+                    </div>
+                    <div style="margin-bottom: 12px; color: #e4a853; font-size: 1.1rem; letter-spacing: 1px;">${stars}</div>
+                    <p style="margin: 0; color: #444; line-height: 1.6; font-size: 1rem; word-break: break-word;">${cleanInput(item.comment)}</p>
+                `;
+                displayList.appendChild(card);
+            });
+        }
+
+        function cleanInput(str) {
+            return str.replace(/[&<>'"]/g, match => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[match]));
+        }
+    </script>
+</body>
+</html>
