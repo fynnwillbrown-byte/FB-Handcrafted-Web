@@ -334,4 +334,19 @@ img {
     .about__container {
         padding: 20px;
     }
+
+        /* Fix the product grid and make images a reasonable size on mobile phones */
+    .products__grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Drops min-width from 350px to 240px */
+        gap: 20px;
+    }
+
+    .product__card {
+        padding: 20px; /* Reduces padding slightly so the card fits small screens perfectly */
+    }
+
+    .product__img-wrapper {
+        height: 220px; /* Drops fixed height from 350px down to a crisp 220px on mobile */
+    }
+
 }
