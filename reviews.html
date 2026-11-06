@@ -168,8 +168,16 @@
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
     </footer>
 
-    <!-- INTERACTIVE SCRIPT SYSTEM -->
+        <!-- INTERACTIVE CLOUD SCRIPT SYSTEM -->
+    <!-- 1. Load the Supabase cloud library -->
+    <script src="https://jsdelivr.net"></script>
+
     <script>
+        // 2. Initialize your Cloud Database Connection
+        const SUPABASE_URL = "https://supabase.co"; 
+        const SUPABASE_ANON_KEY = "PASTE_YOUR_sb_publishable_KEY_HERE";
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         // --- MOBILE MENU TOGGLE LOGIC ---
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navbarMenu = document.getElementById('navbar-menu');
@@ -184,57 +192,90 @@
         const form = document.getElementById('review-form');
         const displayList = document.getElementById('reviews-list');
 
+        // Automatically fetch data from the cloud when the page loads
         window.addEventListener('load', loadReviews);
 
         if (form) {
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const name = document.getElementById('reviewer-name').value;
-                const rating = document.getElementById('reviewer-rating').value;
+                const rating = parseInt(document.getElementById('reviewer-rating').value);
                 const comment = document.getElementById('reviewer-comment').value;
-                const date = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
 
-                const reviewItem = { name, rating, comment, date };
+                // Send review data straight to your Supabase cloud database table
+                const { data, error } = await _supabase
+                    .from('reviews')
+                    .insert([{ name, rating, comment }]);
 
-                let feed = localStorage.getItem('fb_reviews') ? JSON.parse(localStorage.getItem('fb_reviews')) : [];
-                feed.unshift(reviewItem);
-                localStorage.setItem('fb_reviews', JSON.stringify(feed));
-
-                form.reset();
-                loadReviews();
+                if (error) {
+                    console.error("Cloud Error saving review:", error);
+                    alert("Something went wrong saving your review. Please try again.");
+                } else {
+                    form.reset();
+                    // Reload the feed to display the freshly submitted review
+                    loadReviews();
+                }
             });
         }
 
-        function loadReviews() {
+        async function loadReviews() {
             if (!displayList) return;
-            displayList.innerHTML = '';
+            displayList.innerHTML = '<p style="color: #888; text-align: center;">Loading community reviews...</p>';
             
-            let feed = localStorage.getItem('fb_reviews') ? JSON.parse(localStorage.getItem('fb_reviews')) : [];
+            // Pull down all reviews sorted by the newest submission first
+            let { data: feed, error } = await _supabase
+                .from('reviews')
+                .select('*')
+                .order('created_at', { ascending: false });
 
-            if (feed.length === 0) {
+            if (error) {
+                console.error("Cloud Error fetching reviews:", error);
+                displayList.innerHTML = '<p style="color: #ff5555; text-align: center;">Could not load reviews right now.</p>';
+                return;
+            }
+
+            displayList.innerHTML = '';
+
+            if (!feed || feed.length === 0) {
                 displayList.innerHTML = '<p style="color: #888; font-style: italic; background: #fff; border: 1px dashed #ddd; padding: 30px; text-align: center; border-radius: 8px;">No reviews left yet. Be the first to add your feedback!</p>';
                 return;
             }
 
             feed.forEach(item => {
-                const stars = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
+                const stars = '⭐'.repeat(item.rating);
+                
+                // Formats the timestamp from the database into a clean readable date
+                const cleanDate = new Date(item.created_at).toLocaleDateString('en-CA', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+
                 const card = document.createElement('div');
                 card.className = 'review-card-item'; 
+                card.style.background = '#ffffff';
+                card.style.border = '1px solid #eaeaea';
+                card.style.padding = '20px';
+                card.style.borderRadius = '8px';
+                card.style.marginBottom = '20px';
+                card.style.boxShadow = '0 2px 10px rgba(0,0,0,0.01)';
                 
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <strong style="color: #2c2c2c; font-size: 1.1rem; font-weight: 700;">${cleanInput(item.name)}</strong>
-                        <span style="color: #999; font-size: 0.85rem;">${item.date}</span>
+                        <span style="font-size: 13px; color: #666;">${cleanDate}</span>
                     </div>
-                    <div style="margin-bottom: 12px; color: #e4a853; font-size: 1.1rem; letter-spacing: 1px;">${stars}</div>
-                    <p style="margin: 0; color: #444; line-height: 1.6; font-size: 1rem; word-break: break-word;">${cleanInput(item.comment)}</p>
+                    <div style="margin-bottom: 8px; color: #e4a853;">${stars}</div>
+                    <p style="margin: 0; color: #333; line-height: 1.4; word-break: break-word;">${cleanInput(item.comment)}</p>
                 `;
                 displayList.appendChild(card);
             });
         }
 
+        // Sanitizer utility against malicious text/script injections (XSS Security)
         function cleanInput(str) {
+            if (!str) return '';
             return str.replace(/[&<>'"]/g, match => ({
                 '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
             }[match]));
