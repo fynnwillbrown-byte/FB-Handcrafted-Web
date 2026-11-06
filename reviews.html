@@ -163,20 +163,18 @@
 
     </div>
 
-    <!-- CLEAN STANDARD FOOTER (No views layout elements) -->
+    <!-- CLEAN STANDARD FOOTER -->
     <footer class="site-footer">
         <p>© 2026 FB Handcrafted. Handmade In Canada.</p>
     </footer>
 
-        <!-- INTERACTIVE CLOUD SCRIPT SYSTEM -->
-  
-        <!-- INTERACTIVE CLOUD SCRIPT SYSTEM -->
-    <!-- 1. Load the Supabase cloud library -->
-    <script src="https://supabase.com/dashboard/project/ezylibvjcscjamlqbzeu/settings/api-keys"></script>
+    <!-- INTERACTIVE CLOUD SCRIPT SYSTEM -->
+    <!-- 1. Load the Supabase cloud library securely -->
+    <script src="https://jsdelivr.net"></script>
 
     <script>
         // 2. Initialize your Cloud Database Connection
-        const SUPABASE_URL = "https://supabase.co"; 
+        const SUPABASE_URL = "https://ezylibvjcscjamlqbzeu.supabase.co"; 
         const SUPABASE_ANON_KEY = "sb_publishable_dscd5dKMEn6RJUxYdTWtPg_87GT-J4z"; 
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -266,22 +264,19 @@
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <strong style="color: #2c2c2c; font-size: 1.1rem; font-weight: 700;">${cleanInput(item.name)}</strong>
-                        <span style="font-size: 13px; color: #666;">${cleanDate}</span>
-                    </div>
-                    <div style="margin-bottom: 8px; color: #e4a853;">${stars}</div>
-                    <p style="margin: 0; color: #333; line-height: 1.4; word-break: break-word;">${cleanInput(item.comment)}</p>
-                `;
-                displayList.appendChild(card);
-            });
-        }
+Use code with caution.
+${cleanDate}
 
-        // Sanitizer utility against malicious text/script injections (XSS Security)
-        function cleanInput(str) {
-            if (!str) return '';
-            return str.replace(/[&<>'"]/g, match => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-            }[match]));
-        }
-    </script>
-</body>
-</html>
+${stars}
+${cleanInput(item.comment)}
+`;
+displayList.appendChild(card);
+});
+}
+// Sanitizer utility against malicious text/script injections (XSS Security)
+function cleanInput(str) {
+if (!str) return '';
+return str.replace(/[&<>'"]/g, match => ({
+'&': '&', '<': '<', '>': '>', "'": ''', '"': '"'
+}[match]));
+}
