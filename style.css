@@ -161,7 +161,6 @@ img {
 
 .products__grid {
     display: grid;
-    /* 1. INCREASED MINIMUM CARD WIDTH FROM 500px TO 600px */
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
     margin-bottom: 40px;
@@ -170,7 +169,7 @@ img {
 .product__card {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 30px; /* 2. INCREASED PADDING FOR BETTER BREATHING ROOM ON LARGER CARDS */
+    padding: 30px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     border: 1px solid #eee;
     transition: transform 0.3s ease;
@@ -183,8 +182,8 @@ img {
 }
 
 .product__img-wrapper {
-    width: 100%; /* 3. FIXED: Changed from 200% to 100% so it doesn't break out of the card */
-    height: 350px; /* 4. INCREASED HEIGHT to match the new larger card scale */
+    width: 100%;
+    height: 350px;
     overflow: hidden;
     border-radius: 6px;
     margin-bottom: 15px;
@@ -192,32 +191,31 @@ img {
 }
 
 .product__img-wrapper img {
-    width: 100%; /* 5. FIXED: Changed from 120% to 100% to neatly fill the wrapper */
-    height: 100%; /* 6. FIXED: Changed from 120% to 100% */
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
 .product__card h3 {
-    font-size: 1.4rem; /* 7. BUMPED UP FONT SIZE to keep typography proportional */
+    font-size: 1.4rem;
     color: #2c2c2c;
     margin-bottom: 8px;
     font-weight: 600;
 }
 
 .product__price {
-    font-size: 1.3rem; /* 8. BUMPED UP FONT SIZE */
+    font-size: 1.3rem;
     color: #e4a853; 
     font-weight: bold;
     margin-bottom: 4px;
 }
 
 .product__card h4 {
-    font-size: 0.95rem; /* 9. BUMPED UP FONT SIZE */
+    font-size: 0.95rem;
     color: #888888;
     font-weight: 500;
     text-transform: uppercase;
 }
-
 
 /* ==========================================================================
    5. PROFILE LAYOUT WRAPPER (ABOUT PAGE)
@@ -335,18 +333,17 @@ img {
         padding: 20px;
     }
 
-        /* Fix the product grid and make images a reasonable size on mobile phones */
-    .products__grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Drops min-width from 350px to 240px */
+    /* Fixed Product Cards & Image Sizes on Mobile Phones */
+    #products-section .products__grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 20px;
     }
 
     .product__card {
-        padding: 20px; /* Reduces padding slightly so the card fits small screens perfectly */
+        padding: 16px;
     }
 
     .product__img-wrapper {
-        height: 220px; /* Drops fixed height from 350px down to a crisp 220px on mobile */
+        height: 200px !important; /* Overrides desktop height for narrow screens */
     }
-
 }
