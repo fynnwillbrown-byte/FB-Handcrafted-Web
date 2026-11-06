@@ -82,3 +82,54 @@ function cleanInput(str) {
         '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[match]));
 }
+// ==========================================================================
+// 3. PRODUCT POPUP MODAL LAYOUT ENGINE
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".product__card");
+    const modal = document.getElementById("product-modal");
+    const modalImg = document.getElementById("modal-img");
+    const modalTitle = document.getElementById("modal-title");
+    const modalPrice = document.getElementById("modal-price");
+    const modalDims = document.getElementById("modal-dims");
+    const closeBtn = document.getElementById("close-modal-btn");
+
+    if (cards.length > 0 && modal) {
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                // 1. Gather descriptive texts from inside the specific clicked card
+                const imgSrc = card.querySelector(".product__img-wrapper img").src;
+                const titleText = card.querySelector("h3").textContent;
+                const priceText = card.querySelector(".product__price").textContent;
+                const dimsText = card.querySelector("h4").textContent;
+
+                // 2. Inject collected text values safely into the popup dashboard layout
+                modalImg.src = imgSrc;
+                modalImg.alt = titleText;
+                modalTitle.textContent = titleText;
+                modalPrice.textContent = priceText;
+                modalDims.textContent = dimsText;
+
+                // 3. Fade modal card view smoothly into window viewpoint
+                modal.style.display = "flex";
+                document.body.style.overflow = "hidden"; // Prevents background body scrolling
+            });
+        });
+
+        // Click close "×" button to dismiss popup modal wrapper view
+        closeBtn.addEventListener("click", closeModalWindow);
+
+        // Click anywhere on gray blurred backdrop area to hide popup modal view
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeModalWindow();
+            }
+        });
+    }
+
+    function closeModalWindow() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enables background body scrolling
+    }
+});
+
